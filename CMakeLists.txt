@@ -4,9 +4,10 @@ project(wx_learn)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Wall -Werror")
 
-add_subdirectory(libs/wxWidgets)
+find_package(wxWidgets REQUIRED COMPONENTS core)
+include(${wxWidgets_USE_FILE})
 add_executable(helloworld src/01-helloworld/main.cpp)
-target_link_libraries(helloworld wx::core)
+target_link_libraries(helloworld ${wxWidgets_LIBRARIES})
 
 # все для тестирования
 add_subdirectory(libs/googletest)
